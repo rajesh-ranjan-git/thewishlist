@@ -5,11 +5,15 @@
   @if(items.length > 0) {
   <div class="flex justify-center items-center">
     <ul class="flex flex-col gap-4">
-      @for (item of items; track $index) {
+      @for (item of items; track $index;) {
       <li>
         <label class="flex gap-2">
-          <input type="checkbox" />{{ item.wishTitle }}</label
-        >
+          <input
+            type="checkbox"
+            [checked]="item.isComplete"
+            [attr.data-index]="$index"
+          />{{ item.wishTitle }}
+        </label>
       </li>
       }
     </ul>

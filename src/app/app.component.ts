@@ -13,5 +13,5 @@ export class AppComponent {
     new WishItem('Find grass that cuts itself'),
     new WishItem('List Item 4', true),
   ];
-  title = 'The Wishlist';
+  title = 'The Wishlist App';
 }

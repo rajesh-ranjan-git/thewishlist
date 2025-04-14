@@ -11,12 +11,23 @@ export class AppComponent {
     new WishItem('To learn Angular'),
     new WishItem('Get Coffee', true),
     new WishItem('Find grass that cuts itself'),
-    new WishItem('List Item 4', true),
   ];
   title = 'The Wishlist App';
+
+  newWishText = '';
 
   toggleItem(item: WishItem) {
     item.isComplete = !item.isComplete;
     console.log(item);
+  }
+
+  handleInputChange(e: any) {
+    console.log('e.target.value : ', e.target.value);
+  }
+
+  addWish() {
+    // todo: Add wish to the items array
+    // clear the textbox
+    console.log('Wish added');
   }
 }

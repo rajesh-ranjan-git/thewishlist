@@ -14,4 +14,9 @@ export class AppComponent {
     new WishItem('List Item 4', true),
   ];
   title = 'The Wishlist App';
+
+  toggleItem(item: WishItem) {
+    item.isComplete = !item.isComplete;
+    console.log(item);
+  }
 }

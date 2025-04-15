@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { WishItem } from '../shared/models/wishItem';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  imports: [FormsModule],
 })
 export class AppComponent {
   items: WishItem[] = [
@@ -14,14 +16,12 @@ export class AppComponent {
   ];
   title = 'The Wishlist App';
 
-  inputItemValue = '';
+  inputItemValue: string = '';
+
+  filteredItems: WishItem[] = this.items;
 
   toggleItem(item: WishItem) {
     item.isComplete = !item.isComplete;
-  }
-
-  handleInputChange(e: any) {
-    this.inputItemValue = e.target.value;
   }
 
   addWish() {
@@ -29,5 +29,17 @@ export class AppComponent {
     // clear the textbox
     this.items.push(new WishItem(this.inputItemValue));
     this.inputItemValue = '';
+  }
+
+  handleFilter(e: Event) {
+    const filter = (e.target as HTMLInputElement).value;
+
+    if (filter === '0') {
+      this.filteredItems = this.items;
+    } else if (filter === '1') {
+      this.filteredItems = this.items.filter((item) => !item.isComplete);
+    } else if (filter === '2') {
+      this.filteredItems = this.items.filter((item) => item.isComplete);
+    }
   }
 }

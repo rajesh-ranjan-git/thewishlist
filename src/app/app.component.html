@@ -5,11 +5,17 @@
   <div class="w-full">
     <form class="flex justify-center items-center gap-2">
       <div>
-        <label for=""></label>
-        <input
+        <label for="itemInput" class="font-semibold text-lg">New Wish : </label>
+        <!-- <input
           type="text"
           (change)="handleInputChange($event)"
           [value]="inputItemValue"
+          class="p-2 px-4 border border-slate-300 rounded-md outline-none"
+        /> -->
+        <input
+          type="text"
+          name="itemInput"
+          [(ngModel)]="inputItemValue"
           class="p-2 px-4 border border-slate-300 rounded-md outline-none"
         />
       </div>
@@ -24,10 +30,22 @@
       </div>
     </form>
   </div>
-  @if(items.length > 0) {
+  <div class="flex justify-center items-center mt-4 w-full">
+    <select
+      name="item-filter"
+      id="item-filter"
+      (change)="handleFilter($event)"
+      class="p-2 border border-slate-300 rounded-md outline-none"
+    >
+      <option value="0">All</option>
+      <option value="1">Unfulfilled</option>
+      <option value="2">Fulfilled</option>
+    </select>
+  </div>
+  @if(filteredItems.length > 0) {
   <div class="flex justify-center items-center mt-4 w-full">
     <ul class="flex flex-col gap-2">
-      @for (item of items; track $index;) {
+      @for (item of filteredItems; track $index;) {
       <li>
         <label class="flex gap-2">
           <input

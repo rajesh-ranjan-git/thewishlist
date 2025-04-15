@@ -14,20 +14,20 @@ export class AppComponent {
   ];
   title = 'The Wishlist App';
 
-  newWishText = '';
+  inputItemValue = '';
 
   toggleItem(item: WishItem) {
     item.isComplete = !item.isComplete;
-    console.log(item);
   }
 
   handleInputChange(e: any) {
-    console.log('e.target.value : ', e.target.value);
+    this.inputItemValue = e.target.value;
   }
 
   addWish() {
     // todo: Add wish to the items array
     // clear the textbox
-    console.log('Wish added');
+    this.items.push(new WishItem(this.inputItemValue));
+    this.inputItemValue = '';
   }
 }

@@ -1,0 +1,11 @@
+<select
+  name="item-filter"
+  id="item-filter"
+  [(ngModel)]="listFilter"
+  (ngModelChange)="changeFilter($event)"
+  class="p-2 border border-slate-300 rounded-md outline-none"
+>
+  <option value="0">All</option>
+  <option value="1">Unfulfilled</option>
+  <option value="2">Fulfilled</option>
+</select>

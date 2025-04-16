@@ -6,16 +6,7 @@
     <app-add-wish-form (addNewWish)="items.push($event)"></app-add-wish-form>
   </div>
   <div class="flex justify-center items-center mt-4 w-full">
-    <select
-      name="item-filter"
-      id="item-filter"
-      [(ngModel)]="listFilter"
-      class="p-2 border border-slate-300 rounded-md outline-none"
-    >
-      <option value="0">All</option>
-      <option value="1">Unfulfilled</option>
-      <option value="2">Fulfilled</option>
-    </select>
+    <app-wish-filter (filter)="filter = $event"></app-wish-filter>
   </div>
   <div>
     <app-wishlist [wishes]="filteredItems"></app-wishlist>

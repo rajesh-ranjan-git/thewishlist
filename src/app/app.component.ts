@@ -3,18 +3,18 @@ import { FormsModule } from '@angular/forms';
 import { WishItem } from '../shared/models/wishItem';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
-
-const filters = [
-  (item: WishItem) => item,
-  (item: WishItem) => !item.isComplete,
-  (item: WishItem) => item.isComplete,
-];
+import { WishFilterComponent } from './wish-filter/wish-filter.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [FormsModule, WishlistComponent, AddWishFormComponent],
+  imports: [
+    FormsModule,
+    WishlistComponent,
+    AddWishFormComponent,
+    WishFilterComponent,
+  ],
 })
 export class AppComponent {
   items: WishItem[] = [
@@ -22,11 +22,12 @@ export class AppComponent {
     new WishItem('Get Coffee', true),
     new WishItem('Find grass that cuts itself'),
   ];
+
   title = 'The Wishlist App';
 
-  listFilter: any = '0';
+  filter: any = () => {};
 
   get filteredItems(): WishItem[] {
-    return this.items.filter(filters[this.listFilter]);
+    return this.items.filter(this.filter);
   }
 }

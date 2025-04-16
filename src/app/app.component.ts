@@ -26,8 +26,4 @@ export class AppComponent {
   title = 'The Wishlist App';
 
   filter: any = () => {};
-
-  get filteredItems(): WishItem[] {
-    return this.items.filter(this.filter);
-  }
 }

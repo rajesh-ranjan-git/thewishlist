@@ -9,6 +9,6 @@
     <app-wish-filter (filter)="filter = $event"></app-wish-filter>
   </div>
   <div>
-    <app-wishlist [wishes]="filteredItems"></app-wishlist>
+    <app-wishlist [wishes]="items.filter(filter)"></app-wishlist>
   </div>
 </div>

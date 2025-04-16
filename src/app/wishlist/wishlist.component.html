@@ -1,0 +1,18 @@
+@if(wishes.length > 0) {
+<div class="flex justify-center items-center mt-4 w-full">
+  <ul class="flex flex-col gap-2">
+    @for (item of wishes; let idx = $index; track $index) {
+    <li class="flex gap-2">
+      <input
+        type="checkbox"
+        [checked]="item.isComplete"
+        [attr.data-index]="idx"
+        (click)="toggleItem(item)"
+      />{{ item.wishTitle }}
+    </li>
+    }
+  </ul>
+</div>
+} @else {
+<div class="flex justify-center items-center">No wishes to display</div>
+}

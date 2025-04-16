@@ -1,0 +1,20 @@
+<form class="flex justify-center items-center gap-2">
+  <div>
+    <label for="itemInput" class="font-semibold text-lg">New Wish : </label>
+    <input
+      type="text"
+      name="itemInput"
+      [(ngModel)]="inputItemValue"
+      class="p-2 px-4 border border-slate-300 rounded-md outline-none"
+    />
+  </div>
+  <div>
+    <button
+      type="submit"
+      (click)="$event.preventDefault(); addWish()"
+      class="bg-blue-500 hover:bg-white p-2 border border-transparent hover:border-blue-500 rounded-md font-semibold text-white hover:text-blue-500 transition-all ease-in-out"
+    >
+      Add Wish
+    </button>
+  </div>
+</form>

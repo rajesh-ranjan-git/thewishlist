@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WishItem } from '../shared/models/wishItem';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
+
+const filters = [
+  (item: WishItem) => item,
+  (item: WishItem) => !item.isComplete,
+  (item: WishItem) => item.isComplete,
+];
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [FormsModule],
+  imports: [FormsModule, WishlistComponent, AddWishFormComponent],
 })
 export class AppComponent {
   items: WishItem[] = [
@@ -16,30 +24,9 @@ export class AppComponent {
   ];
   title = 'The Wishlist App';
 
-  inputItemValue: string = '';
-
-  listFilter: string = '0';
+  listFilter: any = '0';
 
   get filteredItems(): WishItem[] {
-    const filter = this.listFilter;
-
-    if (filter === '0') {
-      return this.items;
-    } else if (filter === '1') {
-      return this.items.filter((item) => !item.isComplete);
-    } else {
-      return this.items.filter((item) => item.isComplete);
-    }
-  }
-
-  toggleItem(item: WishItem) {
-    item.isComplete = !item.isComplete;
-  }
-
-  addWish() {
-    // todo: Add wish to the items array
-    // clear the textbox
-    this.items.push(new WishItem(this.inputItemValue));
-    this.inputItemValue = '';
+    return this.items.filter(filters[this.listFilter]);
   }
 }

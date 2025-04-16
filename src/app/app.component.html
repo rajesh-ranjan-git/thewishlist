@@ -3,32 +3,7 @@
     <h1 class="text-red-500 text-3xl text-center">{{ title }}</h1>
   </div>
   <div class="w-full">
-    <form class="flex justify-center items-center gap-2">
-      <div>
-        <label for="itemInput" class="font-semibold text-lg">New Wish : </label>
-        <!-- <input
-          type="text"
-          (change)="handleInputChange($event)"
-          [value]="inputItemValue"
-          class="p-2 px-4 border border-slate-300 rounded-md outline-none"
-        /> -->
-        <input
-          type="text"
-          name="itemInput"
-          [(ngModel)]="inputItemValue"
-          class="p-2 px-4 border border-slate-300 rounded-md outline-none"
-        />
-      </div>
-      <div>
-        <button
-          type="submit"
-          (click)="$event.preventDefault(); addWish()"
-          class="bg-blue-500 hover:bg-white p-2 border border-transparent hover:border-blue-500 rounded-md font-semibold text-white hover:text-blue-500 transition-all ease-in-out"
-        >
-          Add Wish
-        </button>
-      </div>
-    </form>
+    <app-add-wish-form (addNewWish)="items.push($event)"></app-add-wish-form>
   </div>
   <div class="flex justify-center items-center mt-4 w-full">
     <select
@@ -42,24 +17,7 @@
       <option value="2">Fulfilled</option>
     </select>
   </div>
-  @if(filteredItems.length > 0) {
-  <div class="flex justify-center items-center mt-4 w-full">
-    <ul class="flex flex-col gap-2">
-      @for (item of filteredItems; let idx = $index; track $index) {
-      <li>
-        <label class="flex gap-2">
-          <input
-            type="checkbox"
-            [checked]="item.isComplete"
-            [attr.data-index]="idx"
-            (change)="toggleItem(item)"
-          />{{ item.wishTitle }}
-        </label>
-      </li>
-      }
-    </ul>
+  <div>
+    <app-wishlist [wishes]="filteredItems"></app-wishlist>
   </div>
-  } @else {
-  <div class="flex justify-center items-center">No wishes to display</div>
-  }
 </div>

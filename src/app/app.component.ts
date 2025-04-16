@@ -18,7 +18,19 @@ export class AppComponent {
 
   inputItemValue: string = '';
 
-  filteredItems: WishItem[] = this.items;
+  listFilter: string = '0';
+
+  get filteredItems(): WishItem[] {
+    const filter = this.listFilter;
+
+    if (filter === '0') {
+      return this.items;
+    } else if (filter === '1') {
+      return this.items.filter((item) => !item.isComplete);
+    } else {
+      return this.items.filter((item) => item.isComplete);
+    }
+  }
 
   toggleItem(item: WishItem) {
     item.isComplete = !item.isComplete;
@@ -29,17 +41,5 @@ export class AppComponent {
     // clear the textbox
     this.items.push(new WishItem(this.inputItemValue));
     this.inputItemValue = '';
-  }
-
-  handleFilter(e: Event) {
-    const filter = (e.target as HTMLInputElement).value;
-
-    if (filter === '0') {
-      this.filteredItems = this.items;
-    } else if (filter === '1') {
-      this.filteredItems = this.items.filter((item) => !item.isComplete);
-    } else if (filter === '2') {
-      this.filteredItems = this.items.filter((item) => item.isComplete);
-    }
   }
 }
